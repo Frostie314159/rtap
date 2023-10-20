@@ -1,6 +1,7 @@
 use thiserror::Error;
 
 #[derive(Clone, Copy, Debug, Error)]
+/// Errors regarding Radiotap.
 pub enum RadiotapError {
     #[error("Less header data was encoutered, than was expected")]
     HeaderIncomplete,
