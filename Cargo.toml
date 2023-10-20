@@ -1,0 +1,21 @@
+[package]
+name = "rtap"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bin-utils = { version = "0.2.5" }
+byteorder = { version = "1.5.0", default-features = false }
+deku = "0.16.0"
+macro-bits = "0.1.2"
+thiserror = "1.0.49"
+try_take = "0.1.0"
+
+[dev-dependencies]
+criterion = { version = "0.5.1", features = ["html_reports"] }
+
+[[bench]]
+name = "iter"
+harness = false
