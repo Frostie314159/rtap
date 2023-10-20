@@ -10,3 +10,5 @@ The field iterator itself can get quite large(close to 1.1kB) so avoid copying i
 This crate was designed to never panic and instead and return either an `Err` or `None`.
 ### Invalid fields
 If Rtap fails to parse a field it will return `None`, since we can't possibly guarantee that any subsequent fields were parsed correctly(i.e. it's fused).
+### Compiler
+A nightly compiler is required, due to the use of unstable libary features. However, since three of the four used features are just iterator adaptors, so you won't get any ICEs.
