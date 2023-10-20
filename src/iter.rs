@@ -1,6 +1,8 @@
 use bin_utils::ReadCtx;
 use macro_bits::{bit, check_bit, incomplete_const_array};
 use try_take::try_take;
+#[cfg(not(debug_assertions))]
+use no_panic::no_panic;
 
 use crate::{error::RadiotapError, field_types::RadiotapField};
 
@@ -34,6 +36,7 @@ const fn calculate_padding(offset: usize, align: usize) -> usize {
     aligned_offset - offset
 }
 
+#[cfg_attr(not(debug_assertions), no_panic)]
 /// Create an iterator over the fields of a Radiotap header.
 /// 
 /// This takes in the entire header.
