@@ -1,7 +1,7 @@
 use macro_bits::{bit, bitfield};
 
 bitfield! {
-    #[derive(Debug, PartialEq, Clone, Copy)]
+    #[derive(Clone, Copy, Debug, Default, Eq, Hash, PartialEq)]
     pub struct TxFlags: u16 {
         pub failed_excessive_retries: bool => bit!(0),
         pub cts_to_self_protection: bool => bit!(1),

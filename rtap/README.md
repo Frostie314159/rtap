@@ -2,7 +2,7 @@
 Radiotap parsing in rust using iterators.
 ## Notes
 ### Vendor namespaces
-The current implementation doesn't allow for vendor namespaces. As soon as a vendor namespace is encountered the iterator will eagerly skip the subsequent bytes and continues parsing after.
+The current implementation doesn't allow for vendor namespaces. As soon as a vendor namespace is encountered the iterator will eagerly skip the subsequent bytes and continues parsing after. This is however no real issue, since no vendor namespaces have ever been observed in the wild.
 ### Iterators
 Iterators are small but not empty structures. This library creates an iterator over Radiotap fields from an iterator over bytes. The produced iterator is lazy and only parse the next field when you call next. 
 The field iterator itself can get quite large(close to 1.1kB) so avoid copying it around. The byte iterator shouldn't be an owning iterator, since it's copied multiple times internally and this can create quite the overhead. [Proof](https://gist.github.com/rust-play/ac311ad3aa056c33dfdd681a805f5495)

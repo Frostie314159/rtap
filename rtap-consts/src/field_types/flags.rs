@@ -1,7 +1,7 @@
 use macro_bits::{bit, bitfield};
 
 bitfield! {
-    #[derive(Debug, PartialEq, Default, Clone, Copy)]
+    #[derive(Clone, Copy, Debug, Default, Eq, Hash, PartialEq)]
     /// Radiotap flags
     ///
     /// See the [radiotap spec](https://www.radiotap.org/fields/Flags.html)

@@ -1,7 +1,7 @@
 use macro_bits::{bit, bitfield};
 
 bitfield! {
-    #[derive(Debug, PartialEq, Default, Clone, Copy)]
+    #[derive(Clone, Copy, Debug, Default, Eq, Hash, PartialEq)]
     pub struct ChannelFlags: u16 {
         pub turbo_channel: bool => bit!(4),
         pub cck_channel: bool => bit!(5),
