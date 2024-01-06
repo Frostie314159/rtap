@@ -11,7 +11,7 @@ thiserror = "1.0.49"
 try_take = "0.1.0"
 # rtap-macros = { path="../rtap-macros" }
 rtap-consts = { path="../rtap-consts" }
-scroll = { git = "https://github.com/Frostie314159/scroll.git", branch = "fixed-array-impl" }
+scroll = { version = "0.12.0", default-features = false }
 
 [dev-dependencies]
 criterion = { version = "0.5.1", features = ["html_reports"] }
