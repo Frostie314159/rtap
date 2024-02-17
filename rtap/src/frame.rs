@@ -1,5 +1,4 @@
 use scroll::{ctx::TryFromCtx, Endian, Pread};
-use alloc::borrow::Cow;
 
 use crate::{field_types::RadiotapField, iter::create_radiotap_iterator};
 

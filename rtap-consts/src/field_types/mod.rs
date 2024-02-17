@@ -135,7 +135,7 @@ impl<'a> TryFromCtx<'a, u8> for RadiotapField {
             ),
             FLAGS => (
                 Self::Flags {
-                    flags: RadiotapFlags::from_representation(from.gread(&mut offset)?),
+                    flags: RadiotapFlags::from_bits(from.gread(&mut offset)?),
                 },
                 1,
             ),
@@ -148,7 +148,7 @@ impl<'a> TryFromCtx<'a, u8> for RadiotapField {
             CHANNEL => (
                 Self::Channel {
                     frequency: from.gread(&mut offset)?,
-                    flags: ChannelFlags::from_representation(from.gread(&mut offset)?),
+                    flags: ChannelFlags::from_bits(from.gread(&mut offset)?),
                 },
                 4,
             ),
@@ -209,13 +209,13 @@ impl<'a> TryFromCtx<'a, u8> for RadiotapField {
             ),
             RX_FLAGS => (
                 Self::RxFlags {
-                    flags: RxFlags::from_representation(from.gread(&mut offset)?),
+                    flags: RxFlags::from_bits(from.gread(&mut offset)?),
                 },
                 2,
             ),
             TX_FLAGS => (
                 Self::TxFlags {
-                    flags: TxFlags::from_representation(from.gread(&mut offset)?),
+                    flags: TxFlags::from_bits(from.gread(&mut offset)?),
                 },
                 2,
             ),
@@ -260,11 +260,11 @@ impl TryIntoCtx for RadiotapField {
     fn try_into_ctx(self, buffer: &mut [u8], _ctx: ()) -> Result<usize, Self::Error> {
         match self {
             Self::TSFT { mac_time } => buffer.pwrite(mac_time, 0),
-            Self::Flags { flags } => buffer.pwrite(flags.to_representation(), 0),
+            Self::Flags { flags } => buffer.pwrite(flags.into_bits(), 0),
             Self::Rate { rate } => buffer.pwrite(rate, 0),
             Self::Channel { frequency, flags } => {
                 buffer.pwrite_with(frequency, 0, Endian::Little)?;
-                buffer.pwrite_with(flags.to_representation(), 2, Endian::Little)?;
+                buffer.pwrite_with(flags.into_bits(), 2, Endian::Little)?;
                 Ok(4)
             }
             _ => todo!(),
